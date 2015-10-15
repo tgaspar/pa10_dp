@@ -84,7 +84,7 @@
 \vspace{2cm}
 
 
-\null\hfill{\LARGE \sffamily \textbf{Control of PA-10 robot via UDP-ARCNET server}}
+\null\hfill{\LARGE \sffamily \textbf{UDP-ARCNET server for PA-10 robot control}}
 
 
 \vspace{1cm}
@@ -113,17 +113,13 @@
 
 
 
-\section{Introduction}\
+\section{Introduction}
 
-The report presents a server developed for the purpose of controlling the robot Mitsubishi PA-10 via Ethernet by sending UDP packets. The server acts as middleware between the UDP client and the ARCNET robot controller of the servomotors of the PA-10 robot. It works in real time with a sample frequency of 500Hz. It also allows to control the robot through the internal speed or torque regulator, which gives the users freedom to implement various control strategies.
+The report presents a server developed for the purpose of controlling the robot Mitsubishi PA-10 via UDP and the \matsim libraries to allow design of high level control of the robot. 
 
-The thesis presents the use of various robot control strategies. Experiments with velocity and torque control modes have been made in joint and task space.  Additional experiments also showed the possibility to control the robot in contact with the environment. The results of the experiments showed that the velocity control works better as it is not as dependent on the robot's dynamic parameters as the torque control mode which was implemented with the use of the dynamic model. But due to the probably imprecise dynamic model parameters used for the realization of the different torque mode controls the results of these are not as satisfactory.
+The server acts as middle-ware between the UDP client and the ARCNET robot controller of the servomotors of the PA-10 robot. It works in real time with a sample frequency of 500Hz. It also allows to control the robot through the internal speed or torque regulator, which gives the users freedom to implement various control strategies.
 
-Higher level control was developed in \matsim programme. We developed a \simulink block for communication with the developed server which gives future users easier ways to implement control algorithms.
-	
-%The robot Mitsubishi Portable Arm PA-10 is a serial robot with seven degrees of freedom. It's servo motor controller allows control of the robot via input speeds or input torques. The controller has an ARCNET module which allows its connection to the ARCNET network. We developed a UDP-ARNCET server program, to allow future users to develop various control programs without the need to directly connect to the robot's servo controller. The only requisite is the ability of the control program to send UDP packages to the UDP-ARCNET server.
-%
-%Matlab's Simulink Real-Time OS offers the ability to develop programs that run in hard real time. We implemented various control strategies that control the robot via input speeds or input torques. For easier start we also prepared basic control schemes which are easily accessible from the Matlab's command line.
+The developed \matsim libraries allow easy communication with the server and an easy start into designing costume control strategies. We also prepared demo programs to present simple control strategies via input speeds or torques. We also prepared a program to identify center of mass and mass of the robot's tool.
 
 
 \begin{figure}
@@ -134,6 +130,11 @@ Higher level control was developed in \matsim programme. We developed a \simulin
 \end{figure}
 
 \section{UDP-ARCNET server}
+
+The PA-10 is an industrial robot built buy Mitsubishi Heavy industries. The robot has seven degrees of freedom which classifies it as a redundant mechanism. The robot's servo motor controller allows the control of each servo either by reference speed or torque values. The proprietary controller, MHI controller, allows the users to control the robot via input speeds only. The MHI controller works with a sample frequency of 100 Hz and has strong axis speed limits.
+
+
+
 \subsection{Specifications}
 \subsection{Usage}
 \subsection{Modding}
